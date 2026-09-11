@@ -1,0 +1,10 @@
+{
+  "name": "try-videoclaw",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Sandbox for videoclaw experiments — try.videoclaw.com",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node scripts/build.js && npx -y serve public"
+  }
+}

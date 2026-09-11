@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hello — how this sandbox works</title>
+<meta name="description" content="The starter example. Copy this folder to begin a new experiment.">
+<style>
+  :root{--bg:#faf8f4;--fg:#16161a;--mut:#6b6b73;--line:#e4e0d7;--accent:#2b00ff}
+  @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#111114;--fg:#f2f0ec;--mut:#9a9aa4;--line:#2a2a31;--accent:#8c78ff}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Inter,system-ui,sans-serif}
+  .wrap{max-width:640px;margin:0 auto;padding:56px 24px 80px}
+  h1{font-size:28px;letter-spacing:-.02em;margin:0 0 12px}
+  p{color:var(--mut)}
+  ol{color:var(--mut);padding-left:20px}
+  li{margin:8px 0}
+  code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+  pre{background:rgba(128,128,128,.1);border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;color:var(--fg)}
+  a{color:var(--accent)}
+  .back{display:inline-block;margin-bottom:26px;font-size:14px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="/">← all experiments</a>
+    <h1>This folder is the template.</h1>
+    <p>Everything on <strong>try.videoclaw.com</strong> is one folder under <code>public/</code>. There is no framework and no build step to learn — if it works when you open the file locally, it works here.</p>
+    <ol>
+      <li>Copy this folder: <code>cp -R public/hello public/my-idea</code></li>
+      <li>Edit <code>public/my-idea/index.html</code>. Give it a real <code>&lt;title&gt;</code> and a <code>&lt;meta name="description"&gt;</code> — the homepage listing reads both.</li>
+      <li>Commit and push. Vercel rebuilds the index and your page is live at <code>/my-idea</code>.</li>
+    </ol>
+    <p>Drop images, video, JSON, whatever alongside the HTML and reference it relatively:</p>
+    <pre>public/my-idea/
+  index.html
+  clip.mp4      &lt;- &lt;video src="clip.mp4"&gt;
+  data.json</pre>
+    <p>To preview the whole site locally before pushing:</p>
+    <pre>npm run dev</pre>
+    <p>Delete anything in here freely. Nothing on this domain is depended on by anyone.</p>
+  </div>
+</body>
+</html>
