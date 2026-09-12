@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta property="og:title" content="Free content strategy session + $100 of AI video credits">
-<meta property="og:description" content="Twenty minutes with the Videoclaw team. We map the videos you need, then Videoclaw makes them. First 20 signups only.">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
+<title>Videoclaw Strategy Session</title>
+<meta name="description" content="Book a free 20-minute content strategy session and get $100 of AI video credits from Videoclaw.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="preload" href="/videoclaw-offer/assets/TAYBirdieRegular.woff2" as="font" type="font/woff2" crossorigin>
 <style>
   html { -webkit-text-size-adjust: 100%; }
@@ -14,12 +15,6 @@
   img { max-width: 100%; }
   [hidden] { display: none !important; }
 </style>
-<title>Videoclaw Strategy Session</title>
-<meta name="description" content="Book a free 20-minute content strategy session and get $100 of AI video credits from Videoclaw.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-
 <style>
   /* Brand faces, self-hosted. TAY Birdie sets headlines; TAY Sundae is
      the rare script accent, per the Videoclaw type guide. */
@@ -305,12 +300,41 @@
     .fields .wide { grid-column: span 1; }
   }
 
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .email-field {
+    width: 100%;
+    padding: 14px 13px;
+    border: 1px solid var(--rule-in);
+    background: transparent;
+    font-family: inherit;
+    font-size: 16px; /* 16px stops iOS Safari zooming the page on focus */
+    color: var(--ink);
+    border-radius: 0;
+  }
+  .email-field::placeholder { color: var(--faint); }
+  .email-field:focus { outline: 1px solid var(--ink); outline-offset: -1px; }
+  .email-field[aria-invalid="true"] { border-color: var(--accent); }
+
+  /* Grid, not flex: every option gets the same width in its row, so no
+     more "Explainer" sitting narrower than its neighbours. 44px min-height
+     is the smallest comfortable touch target on a phone. */
+  .chips { display: grid; gap: 6px; }
+  .chips--persona { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+  .chips--types   { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+  @media (max-width: 420px) {
+    .chips--persona { grid-template-columns: 1fr; }
+    .chips--types   { grid-template-columns: repeat(2, 1fr); }
+  }
   .chip {
     font-family: var(--mono);
     font-size: 12px;
     cursor: pointer;
-    padding: 8px 12px;
+    padding: 8px 10px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.3;
     color: var(--ink);
     background: transparent;
     border: 1px solid var(--rule-in);
@@ -384,8 +408,71 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
   }
-</style>
 
+  /* ============ EVENT REWORK ============ */
+  /* Hero is a full-width band; below it the claim column comes FIRST in
+     the DOM so phones meet the form immediately, and `order` puts it back
+     on the right for desktop. */
+  .hero {
+    padding: clamp(30px, 4vw, 52px) clamp(20px, 4vw, 48px) clamp(26px, 3vw, 36px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero h1 { max-width: 20ch; }
+  .hero .lede { margin-top: 18px; }
+
+  .col-claim { padding: clamp(28px, 3.5vw, 44px) clamp(20px, 3vw, 36px) 48px; }
+
+  /* Scoped to desktop so it can't override the stacking rule below —
+     equal specificity, and this block comes later in the sheet. */
+  @media (min-width: 961px) {
+    .split { grid-template-columns: 1.02fr .98fr; }
+    .col-claim { order: 2; }
+    .col-pitch { order: 1; }
+  }
+
+  @media (max-width: 960px) {
+    .split { grid-template-columns: 1fr; }
+    .col-claim { order: 1; border-bottom: 1px solid var(--rule); }
+    .col-pitch { order: 2; border-bottom: 0; border-right: 0; }
+    .hero .lede { max-width: none; }
+  }
+
+  /* Compact spec line — the full 3-up strip moves into the pitch column */
+  .claim-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border: 1px solid var(--rule-in);
+    padding: 10px 13px;
+    margin-bottom: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+  }
+  .claim-meta span:not(:last-child)::after { content: " ·"; color: var(--muted); }
+
+  .claim-head {
+    font-family: var(--display);
+    font-size: clamp(24px, 2.2vw, 30px);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .claim-sub { font-size: 15px; color: var(--muted); margin-bottom: 22px; }
+
+  /* Calendar is revealed only after submit, so the heavy Google iframe is
+     off the critical path — matters a lot on event wifi. */
+  .after-book { margin-top: 26px; }
+
+  /* The header strip wraps badly at phone widths — drop the city there. */
+  .tz-city { }
+  @media (max-width: 480px) {
+    .tz-city { display: none; }
+    .booking-card__head { gap: 10px; }
+  }
+
+</style>
 </head>
 <body>
 <div class="page">
@@ -395,36 +482,85 @@
     <span class="eyebrow">Offer expires today</span>
   </header>
 
+  <section class="hero">
+    <h1>Get a free content strategy session
+      <span class="accent">+ $100 of AI video credits
+        <span class="ink">by Videoclaw if you sign up today.</span>
+      </span>
+    </h1>
+    <p class="lede">Twenty minutes with our team. Based on your goals, we map the videos you need, then Videoclaw makes them. First 20 people only.</p>
+  </section>
+
   <div class="split">
 
-    <!-- ================= PITCH ================= -->
+    <!-- CLAIM — first in the DOM, so phones land on it -->
+    <div class="col-claim">
+      <div id="booking-open">
+        <div class="claim-head">Claim yours</div>
+        <div class="claim-sub">Three taps and your email. Takes about 15 seconds.</div>
+
+        <div class="claim-meta">
+          <span>20 min</span><span>$100.00 credits</span><span>Video call</span>
+        </div>
+
+        <form id="lead-form" novalidate>
+          <div class="section-label">01 — What best describes you</div>
+          <div class="chips chips--persona" id="personas" role="group" aria-label="What best describes you"></div>
+
+          <div class="section-label">02 — Video types you want</div>
+          <div class="chips chips--types" id="types" role="group" aria-label="Video types you want"></div>
+
+          <div class="section-label">03 — Where to send your $100</div>
+          <input class="email-field" type="email" id="f-email" name="email"
+                 placeholder="you@company.com"
+                 inputmode="email" autocomplete="email" autocapitalize="off"
+                 autocorrect="off" spellcheck="false"
+                 aria-label="Your email address">
+
+          <button class="submit" type="submit" id="submit-btn">Confirm session + claim $100 →</button>
+          <div class="form-error" id="form-error" role="alert"></div>
+          <div class="form-note">We'll email your booking link and credits straight away. No call booked yet — pick your time whenever suits.</div>
+        </form>
+      </div>
+
+      <div id="booking-done" hidden>
+        <div class="confirmed">
+          <div class="eyebrow eyebrow--accent">Confirmed</div>
+          <div class="confirmed-name">You're in.</div>
+          <p id="done-summary">20 min video call</p>
+          <p>Your $100 of credits is on its way to <strong id="done-email">your inbox</strong>.</p>
+          <p id="booking-opened" hidden>Your booking calendar just opened in a new tab — pick any time that suits.</p>
+          <p id="booking-blocked" hidden>Your browser blocked the booking tab. Pick a time below instead.</p>
+        </div>
+
+        <div class="after-book">
+          <div class="section-label">Pick your time</div>
+          <div class="booking-card">
+            <div class="booking-card__head">
+              <div class="eyebrow">All times <span id="tz-label">Pacific Time</span></div>
+              <div class="booking-card__meta">20 min · Google Meet</div>
+            </div>
+            <div class="cal-frame">
+              <iframe id="cal-embed" title="Book a 20 minute Videoclaw strategy session" loading="lazy" hidden></iframe>
+              <div class="cal-fallback" id="cal-fallback">
+                <div class="eyebrow eyebrow--ink">Calendar not connected yet</div>
+                <p>Drop your Google Calendar appointment&nbsp;schedule link into <code>CONFIG.calendarUrl</code> and this panel goes live.</p>
+              </div>
+            </div>
+          </div>
+          <div class="cal-note">
+            <a class="cal-open" id="cal-open" href="#" target="_blank" rel="noopener" hidden>Open booking page &#8599;</a>
+          </div>
+          <button class="ghost-btn" type="button" id="reset-btn">Add another person</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PITCH — supporting detail, below the form on phones -->
     <div class="col-pitch">
-      <h1>Get a free content strategy session
-        <span class="accent">+ $100 of AI video credits
-          <span class="ink">by Videoclaw if you sign up today.</span>
-        </span>
-      </h1>
-
-      <p class="lede">Twenty minutes with our team. Based on your goals, we map the videos you need, then Videoclaw makes them. Available for the first 20 people who sign up.</p>
-
-      <dl class="specs">
-        <div class="spec">
-          <dt class="eyebrow">Duration</dt>
-          <dd>20 minutes</dd>
-        </div>
-        <div class="spec">
-          <dt class="eyebrow">Credits</dt>
-          <dd>$100.00</dd>
-        </div>
-        <div class="spec">
-          <dt class="eyebrow">Format</dt>
-          <dd>Video call</dd>
-        </div>
-      </dl>
-
-      <section class="about">
+      <section>
         <div class="eyebrow">What Videoclaw is</div>
-        <p>Videoclaw is a video production agent for founders and lean teams who want video, but don't have a video team. Start with an idea, script, article, reference, or raw footage. Videoclaw plans, generates, edits, captions, and finishes launch videos, product demos, advertising, podcast clips, social content, sales videos, and whatever you think of next.</p>
+        <p style="margin:12px 0 0; font-size:17px; line-height:1.55; max-width:56ch; text-wrap:pretty">Videoclaw is a video production agent for founders and lean teams who want video, but don't have a video team. Start with an idea, script, article, reference, or raw footage. Videoclaw plans, generates, edits, captions, and finishes launch videos, product demos, advertising, podcast clips, social content, sales videos, and whatever you think of next.</p>
       </section>
 
       <section style="margin-top:36px">
@@ -438,7 +574,7 @@
           <li>
             <div class="eyebrow eyebrow--accent">02</div>
             <div class="step-title">We map the content</div>
-            <div class="step-body">The exact videos your quarter needs, in order.</div>
+            <div class="step-body">We co-create the videos you need</div>
           </li>
           <li>
             <div class="eyebrow eyebrow--accent">03</div>
@@ -453,53 +589,6 @@
         </ol>
       </section>
     </div>
-
-    <!-- ================= BOOKING ================= -->
-    <div class="col-book">
-
-      <div id="booking-open">
-        <div class="book-head">Book your session</div>
-
-        <div class="section-label">01 — Pick a time in our calendar</div>
-        <div class="booking-card">
-          <div class="booking-card__head">
-            <div class="eyebrow">All times <span id="tz-label">Pacific Time</span></div>
-            <div class="booking-card__meta">20 min · Google Meet</div>
-          </div>
-          <div class="cal-frame">
-            <iframe id="cal-embed" title="Book a 20 minute Videoclaw strategy session" loading="lazy" hidden></iframe>
-            <div class="cal-fallback" id="cal-fallback">
-              <div class="eyebrow eyebrow--ink">Calendar not connected yet</div>
-              <p>Drop your Google Calendar appointment&nbsp;schedule link into <code>CONFIG.calendarUrl</code> and this panel goes live.</p>
-            </div>
-          </div>
-        </div>
-        <div class="cal-note">
-          <a class="cal-open" id="cal-open" href="#" target="_blank" rel="noopener" hidden>Open booking page ↗</a>
-        </div>
-
-        <form id="lead-form" novalidate>
-          <div class="section-label">02 — What best describes you</div>
-          <div class="chips" id="personas" role="group" aria-label="What best describes you"></div>
-
-          <div class="section-label">03 — Video types you want</div>
-          <div class="chips" id="types" role="group" aria-label="Video types you want"></div>
-
-          <button class="submit" type="submit" id="submit-btn">Confirm session + claim $100 →</button>
-          <div class="form-error" id="form-error" role="alert"></div>
-          <div class="form-note">20 min video call · your Google Calendar invite arrives instantly</div>
-        </form>
-      </div>
-
-      <div id="booking-done" class="confirmed" hidden>
-        <div class="eyebrow eyebrow--accent">Confirmed</div>
-        <div class="confirmed-name">You're booked.</div>
-        <p id="done-summary">20 min video call · your Google Calendar invite arrives instantly</p>
-        <p>$100 in credits is already sitting in your Videoclaw account.</p>
-        <button class="ghost-btn" type="button" id="reset-btn">Book another</button>
-      </div>
-
-    </div>
   </div>
 
   <footer class="footer">
@@ -507,7 +596,6 @@
     <a href="mailto:founders@humeo.com">founders@humeo.com</a>
   </footer>
 </div>
-
 <script>
 (function () {
   "use strict";
@@ -557,12 +645,16 @@
         .formatToParts(new Date())
         .filter(function (p) { return p.type === "timeZoneName"; })
         .map(function (p) { return p.value; })[0];
-      $("tz-label").textContent = short ? short + " · " + tz.split("/").pop().replace(/_/g, " ") : tz;
+      var city = tz.split("/").pop().replace(/_/g, " ");
+      $("tz-label").innerHTML = short
+        ? short + '<span class="tz-city"> &middot; ' + city + '</span>'
+        : city;
     }
   } catch (e) { /* keep the default label */ }
 
-  /* ---------- calendar embed ---------- */
-  if (CONFIG.calendarUrl) {
+  /* ---------- calendar embed (deferred until confirmation) ---------- */
+  function mountCalendar() {
+    if (!CONFIG.calendarUrl || $("cal-embed").src) return;
     var src = CONFIG.calendarUrl;
     if (src.indexOf("gv=true") === -1) src += (src.indexOf("?") === -1 ? "?" : "&") + "gv=true";
     var frame = $("cal-embed");
@@ -627,6 +719,7 @@
   /* ---------- submission ---------- */
   function collect() {
     return {
+      email: $("f-email").value.trim(),
       persona: state.persona,
       types: state.types.slice(),
       submittedAt: new Date().toISOString(),
@@ -639,6 +732,12 @@
   function validate(lead) {
     if (!lead.persona && !lead.types.length) {
       return { msg: "Tell us what you're after — pick a description or a video type." };
+    }
+    if (!lead.email) {
+      return { field: "f-email", msg: "We need an email to send your $100 of credits." };
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(lead.email)) {
+      return { field: "f-email", msg: "That email doesn't look right — check for a typo." };
     }
     return null;
   }
@@ -675,20 +774,39 @@
     var err = $("form-error");
     var btn = $("submit-btn");
 
+    $("f-email").removeAttribute("aria-invalid");
+
     var lead = collect();
     var problem = validate(lead);
     if (problem) {
       err.textContent = problem.msg;
+      if (problem.field) {
+        $(problem.field).setAttribute("aria-invalid", "true");
+        $(problem.field).focus();
+      }
       return;
     }
 
     err.textContent = "";
+
+    // Opened synchronously, still inside the click gesture — deferring this
+    // until after the fetch resolves gets it swallowed by popup blockers.
+    var booking = null;
+    if (CONFIG.calendarShareUrl || CONFIG.calendarUrl) {
+      booking = window.open(CONFIG.calendarShareUrl || CONFIG.calendarUrl, "_blank", "noopener");
+    }
+
     btn.disabled = true;
     btn.textContent = "Sending…";
 
     keepLocally(lead);
     send(lead).then(function () {
-      $("done-summary").textContent = summarize(lead) + " · your Google Calendar invite arrives instantly";
+      // If the tab was blocked, the confirmation panel is the way through.
+      $("booking-opened").hidden = !booking;
+      $("booking-blocked").hidden = !!booking;
+      $("done-summary").textContent = summarize(lead);
+      $("done-email").textContent = lead.email;
+      mountCalendar();
       $("booking-open").hidden = true;
       $("booking-done").hidden = false;
       $("booking-done").scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -696,6 +814,8 @@
   });
 
   $("reset-btn").addEventListener("click", function () {
+    $("f-email").value = "";
+    $("f-email").removeAttribute("aria-invalid");
     state.persona = null;
     state.types = [];
     renderChips();
