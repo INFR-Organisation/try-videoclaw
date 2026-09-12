@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Free content strategy session + $100 of AI video credits">
+<meta property="og:description" content="Twenty minutes with the Videoclaw team. We map the videos you need, then Videoclaw makes them. First 20 signups only.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/videoclaw-offer/assets/TAYBirdieRegular.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; font: 14px system-ui, sans-serif; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+<title>Videoclaw Strategy Session</title>
+<meta name="description" content="Book a free 20-minute content strategy session and get $100 of AI video credits from Videoclaw.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* Brand faces, self-hosted. TAY Birdie sets headlines; TAY Sundae is
+     the rare script accent, per the Videoclaw type guide. */
+  @font-face {
+    font-family: "TAY Birdie";
+    src: url("/videoclaw-offer/assets/TAYBirdieRegular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "TAY Sundae";
+    src: url("/videoclaw-offer/assets/TAYSundaeRegular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* ============================================================
+     Videoclaw — offer lander
+     Palette and type follow the Videoclaw design canvas.
+     Single-theme by design: a warm paper ground, letterpress rules.
+     ============================================================ */
+  :root {
+    --ground:  #F1EDE1;   /* paper */
+    --edge:    #DBD6C7;   /* deeper paper, page surround */
+    --ink:     #14120D;   /* near-black, warm */
+    --accent:  #C4361A;   /* vermilion */
+    --rule:    rgba(20, 18, 13, .18);
+    --rule-in: rgba(20, 18, 13, .25);
+    --muted:   rgba(20, 18, 13, .55);
+    --faint:   rgba(20, 18, 13, .35);
+
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: "Figtree", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    --display: "TAY Birdie", "Figtree", "Century Gothic", Helvetica, sans-serif;
+    --script: "TAY Sundae", "Snell Roundhand", cursive;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--edge);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { background: var(--ground); min-height: 100vh; }
+
+  /* ---------- shared atoms ---------- */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .eyebrow--accent { color: var(--accent); }
+  .eyebrow--ink { color: var(--ink); font-size: 12px; }
+
+  a { color: var(--accent); }
+  a:hover { color: var(--ink); }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ---------- header ---------- */
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px clamp(20px, 4vw, 48px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .masthead img { height: 38px; width: auto; display: block; }
+
+  /* ---------- two-column split ---------- */
+  .split {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    align-items: start;
+  }
+  .col-pitch {
+    padding: clamp(36px, 5vw, 60px) clamp(20px, 4vw, 44px);
+    border-right: 1px solid var(--rule);
+  }
+  .col-book {
+    padding: clamp(32px, 4vw, 44px) clamp(20px, 3vw, 36px) 56px;
+    position: sticky;
+    top: 0;
+  }
+
+  @media (max-width: 960px) {
+    .split { grid-template-columns: 1fr; }
+    .col-pitch { border-right: 0; border-bottom: 1px solid var(--rule); }
+    .col-book { position: static; }
+  }
+
+  /* ---------- hero ---------- */
+  h1 {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(31px, 3.4vw, 50px);
+    line-height: 1.04;
+    letter-spacing: .015em;
+    text-wrap: balance;
+  }
+  h1 .accent {
+    color: var(--accent);
+    font-size: 1.18em;
+    display: block;
+    margin-top: .12em;
+  }
+  h1 .accent .ink { color: var(--ink); font-size: .847em; }
+
+  .lede {
+    margin: 28px 0 0;
+    font-size: clamp(17px, 1.4vw, 19px);
+    line-height: 1.5;
+    max-width: 46ch;
+    color: rgba(20, 18, 13, .72);
+  }
+
+  /* ---------- spec strip ---------- */
+  .specs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 44px;
+    border: 1px solid var(--rule);
+  }
+  .spec { padding: 18px 20px; border-right: 1px solid var(--rule); }
+  .spec:last-child { border-right: 0; }
+  .spec dd {
+    margin: 6px 0 0;
+    font-family: var(--display);
+    font-size: clamp(19px, 1.7vw, 22px);
+    letter-spacing: .01em;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 560px) {
+    .specs { grid-template-columns: 1fr; }
+    .spec { border-right: 0; border-bottom: 1px solid var(--rule); }
+    .spec:last-child { border-bottom: 0; }
+  }
+
+  /* ---------- prose block ---------- */
+  .about {
+    margin-top: 44px;
+    border-top: 1px solid var(--rule);
+    padding-top: 28px;
+  }
+  .about p {
+    margin: 12px 0 0;
+    font-size: 17px;
+    line-height: 1.55;
+    max-width: 56ch;
+    text-wrap: pretty;
+  }
+
+  /* ---------- how it works ---------- */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px 36px;
+    margin-top: 18px;
+  }
+  .step-title { font-family: var(--display); font-size: 21px; letter-spacing: .01em; margin-top: 8px; }
+  .step-body { font-size: 15px; line-height: 1.55; color: rgba(20, 18, 13, .68); margin-top: 6px; }
+
+  /* ---------- booking panel ---------- */
+  .book-head { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+  .book-tz { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+
+  /* The Google embed is cross-origin, so its insides can't be styled.
+     Instead it's seated in a card of our own: a cream header strip in
+     brand type over a white panel, so the embed's white ground reads as
+     deliberate card stock rather than a foreign box on the paper. */
+  .booking-card {
+    border: 1px solid var(--rule-in);
+    background: #fff;
+    margin-bottom: 12px;
+  }
+  .booking-card__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 13px 16px;
+    background: var(--ground);
+    border-bottom: 1px solid var(--rule-in);
+  }
+  .booking-card__meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .cal-frame {
+    position: relative;
+    height: 592px;
+    overflow: hidden;
+    /* How much of the embed's top to clip. Hides Google's avatar + host
+       name row so the panel opens on "Content Strategy Session". The
+       iframe grows by the same amount so nothing is lost at the bottom;
+       Google's attribution footer is untouched. */
+    --cal-crop: 66px;
+  }
+  .cal-frame iframe {
+    position: absolute;
+    top: calc(var(--cal-crop) * -1);
+    left: 0;
+    width: 100%;
+    height: calc(100% + var(--cal-crop));
+    border: 0;
+    color-scheme: light;
+    /* Pulls Google's blue a touch toward the page without touching
+       legibility — white and black are unaffected by saturate(). */
+    filter: saturate(.82);
+  }
+  /* Google's widget reflows: wide containers put the date grid and the
+     time list side by side, narrow ones stack them and it grows much
+     taller. A single fixed height leaves either a scrollbar or dead
+     space, so the height tracks the column width. */
+  @media (min-width: 1500px) { .cal-frame { height: 620px; } }
+  @media (max-width: 1499px) { .cal-frame { height: 700px; } }
+  @media (max-width: 1180px) { .cal-frame { height: 760px; } }
+  @media (max-width: 960px)  { .cal-frame { height: 620px; } }
+  @media (max-width: 560px)  { .cal-frame { height: 700px; } }
+
+  /* Shown until a real schedule id is wired in, or if the embed is blocked. */
+  .cal-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    padding: 24px;
+    background: var(--ground);
+    background-image: repeating-linear-gradient(135deg, rgba(20, 18, 13, .05) 0 8px, transparent 8px 16px);
+  }
+  .cal-fallback p { margin: 0; font-family: var(--mono); font-size: 11px; color: var(--muted); max-width: 36ch; line-height: 1.6; }
+
+  .cal-note { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
+  .cal-open {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule-in);
+    padding-bottom: 2px;
+  }
+  .cal-open:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ---------- form ---------- */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 24px 0 10px;
+  }
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .fields .wide { grid-column: span 2; }
+  @media (max-width: 420px) {
+    .fields { grid-template-columns: 1fr; }
+    .fields .wide { grid-column: span 1; }
+  }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-family: var(--mono);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 8px 12px;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--rule-in);
+    border-radius: 0;
+    transition: background .12s ease, color .12s ease, border-color .12s ease;
+  }
+  .chip:hover { border-color: var(--ink); }
+  .chip[aria-pressed="true"] {
+    color: var(--ground);
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+
+  .submit {
+    width: 100%;
+    margin-top: 28px;
+    padding: 17px;
+    background: var(--ink);
+    color: var(--ground);
+    border: none;
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: .01em;
+    cursor: pointer;
+    transition: background .15s ease;
+  }
+  .submit:hover { background: var(--accent); }
+  .submit[disabled] { opacity: .55; cursor: progress; }
+
+  .form-note { font-family: var(--mono); font-size: 11px; margin-top: 12px; color: var(--muted); line-height: 1.5; }
+  .form-error { font-family: var(--mono); font-size: 11px; margin-top: 12px; color: var(--accent); line-height: 1.5; min-height: 1em; }
+
+  /* ---------- confirmation ---------- */
+  .confirmed { border: 1px solid var(--rule-in); padding: 32px; }
+  .confirmed-name { font-family: var(--script); font-size: clamp(30px, 4vw, 38px); line-height: 1.15; margin-top: 14px; }
+  .confirmed p { font-size: 16px; color: rgba(20, 18, 13, .7); margin: 12px 0 0; line-height: 1.5; }
+  .ghost-btn {
+    margin-top: 24px;
+    padding: 12px 18px;
+    background: transparent;
+    border: 1px solid rgba(20, 18, 13, .35);
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--ink);
+  }
+  .ghost-btn:hover { border-color: var(--ink); background: rgba(20, 18, 13, .04); }
+
+  /* ---------- footer ---------- */
+  .footer {
+    border-top: 1px solid var(--rule);
+    padding: 22px clamp(20px, 4vw, 48px);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .footer a { color: inherit; text-decoration: none; }
+  .footer a:hover { color: var(--accent); }
+
+  [hidden] { display: none !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <img src="/videoclaw-offer/assets/videoclaw-logo.png" alt="Videoclaw" width="900" height="252">
+    <span class="eyebrow">Offer expires today</span>
+  </header>
+
+  <div class="split">
+
+    <!-- ================= PITCH ================= -->
+    <div class="col-pitch">
+      <h1>Get a free content strategy session
+        <span class="accent">+ $100 of AI video credits
+          <span class="ink">by Videoclaw if you sign up today.</span>
+        </span>
+      </h1>
+
+      <p class="lede">Twenty minutes with our team. Based on your goals, we map the videos you need, then Videoclaw makes them. Available for the first 20 people who sign up.</p>
+
+      <dl class="specs">
+        <div class="spec">
+          <dt class="eyebrow">Duration</dt>
+          <dd>20 minutes</dd>
+        </div>
+        <div class="spec">
+          <dt class="eyebrow">Credits</dt>
+          <dd>$100.00</dd>
+        </div>
+        <div class="spec">
+          <dt class="eyebrow">Format</dt>
+          <dd>Video call</dd>
+        </div>
+      </dl>
+
+      <section class="about">
+        <div class="eyebrow">What Videoclaw is</div>
+        <p>Videoclaw is a video production agent for founders and lean teams who want video, but don't have a video team. Start with an idea, script, article, reference, or raw footage. Videoclaw plans, generates, edits, captions, and finishes launch videos, product demos, advertising, podcast clips, social content, sales videos, and whatever you think of next.</p>
+      </section>
+
+      <section style="margin-top:36px">
+        <div class="eyebrow">How it works</div>
+        <ol class="steps" style="list-style:none; padding:0">
+          <li>
+            <div class="eyebrow eyebrow--accent">01</div>
+            <div class="step-title">Tell us your goals</div>
+            <div class="step-body">Key dates, audience, what you've already shot.</div>
+          </li>
+          <li>
+            <div class="eyebrow eyebrow--accent">02</div>
+            <div class="step-title">We map the content</div>
+            <div class="step-body">The exact videos your quarter needs, in order.</div>
+          </li>
+          <li>
+            <div class="eyebrow eyebrow--accent">03</div>
+            <div class="step-title">Credits land</div>
+            <div class="step-body">$100 in your Videoclaw account, same day.</div>
+          </li>
+          <li>
+            <div class="eyebrow eyebrow--accent">04</div>
+            <div class="step-title">Make them</div>
+            <div class="step-body">Chat, script, generate, download.</div>
+          </li>
+        </ol>
+      </section>
+    </div>
+
+    <!-- ================= BOOKING ================= -->
+    <div class="col-book">
+
+      <div id="booking-open">
+        <div class="book-head">Book your session</div>
+
+        <div class="section-label">01 — Pick a time in our calendar</div>
+        <div class="booking-card">
+          <div class="booking-card__head">
+            <div class="eyebrow">All times <span id="tz-label">Pacific Time</span></div>
+            <div class="booking-card__meta">20 min · Google Meet</div>
+          </div>
+          <div class="cal-frame">
+            <iframe id="cal-embed" title="Book a 20 minute Videoclaw strategy session" loading="lazy" hidden></iframe>
+            <div class="cal-fallback" id="cal-fallback">
+              <div class="eyebrow eyebrow--ink">Calendar not connected yet</div>
+              <p>Drop your Google Calendar appointment&nbsp;schedule link into <code>CONFIG.calendarUrl</code> and this panel goes live.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cal-note">
+          <a class="cal-open" id="cal-open" href="#" target="_blank" rel="noopener" hidden>Open booking page ↗</a>
+        </div>
+
+        <form id="lead-form" novalidate>
+          <div class="section-label">02 — What best describes you</div>
+          <div class="chips" id="personas" role="group" aria-label="What best describes you"></div>
+
+          <div class="section-label">03 — Video types you want</div>
+          <div class="chips" id="types" role="group" aria-label="Video types you want"></div>
+
+          <button class="submit" type="submit" id="submit-btn">Confirm session + claim $100 →</button>
+          <div class="form-error" id="form-error" role="alert"></div>
+          <div class="form-note">20 min video call · your Google Calendar invite arrives instantly</div>
+        </form>
+      </div>
+
+      <div id="booking-done" class="confirmed" hidden>
+        <div class="eyebrow eyebrow--accent">Confirmed</div>
+        <div class="confirmed-name">You're booked.</div>
+        <p id="done-summary">20 min video call · your Google Calendar invite arrives instantly</p>
+        <p>$100 in credits is already sitting in your Videoclaw account.</p>
+        <button class="ghost-btn" type="button" id="reset-btn">Book another</button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>Videoclaw — made by humeo</span>
+    <a href="mailto:founders@humeo.com">founders@humeo.com</a>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================
+     CONFIG — the only two things you need to edit to go fully live.
+     ============================================================ */
+  var CONFIG = {
+    // The embeddable form of your Google Calendar appointment schedule.
+    // This is what calendar.app.google/znGea7dTx5boJ8wR7 resolves to;
+    // the embed needs the long form, the share link does not.
+    calendarUrl: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0IVNM4CzedIU0AtIuNsImnniRm2iDTPiuHaPgxN-PmPeKU7VANnBPXAAqo5crtRiZsXWRtjdus",
+
+    // The short link, for "open in a new tab" and for sharing by hand.
+    calendarShareUrl: "https://calendar.app.google/znGea7dTx5boJ8wR7",
+
+    // Cloudflare Pages Function that records the submission (functions/api/lead.js).
+    formEndpoint: "https://videoclaw.pages.dev/api/lead",
+
+    inboxEmail: "founders@humeo.com"
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  var PERSONAS = [
+    "Founders & solo builders",
+    "Content creators & influencers",
+    "Marketing teams",
+    "Digital & freelance agencies"
+  ];
+
+  var TYPES = [
+    "Launch video", "Product demo", "UGC / creator", "Paid social ads",
+    "Talking head", "Explainer", "Social shorts", "Podcast clips",
+    "Case study", "Not sure yet"
+  ];
+
+  var state = { persona: null, types: [] };
+  var detectedTz = null;
+
+  /* ---------- timezone: show the visitor their own ---------- */
+  try {
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    detectedTz = tz || null;
+    if (tz) {
+      var short = new Intl.DateTimeFormat("en-US", { timeZoneName: "short" })
+        .formatToParts(new Date())
+        .filter(function (p) { return p.type === "timeZoneName"; })
+        .map(function (p) { return p.value; })[0];
+      $("tz-label").textContent = short ? short + " · " + tz.split("/").pop().replace(/_/g, " ") : tz;
+    }
+  } catch (e) { /* keep the default label */ }
+
+  /* ---------- calendar embed ---------- */
+  if (CONFIG.calendarUrl) {
+    var src = CONFIG.calendarUrl;
+    if (src.indexOf("gv=true") === -1) src += (src.indexOf("?") === -1 ? "?" : "&") + "gv=true";
+    var frame = $("cal-embed");
+    frame.src = src;
+    frame.hidden = false;
+    $("cal-fallback").hidden = true;
+
+    var shareUrl = CONFIG.calendarShareUrl || CONFIG.calendarUrl;
+    var open = $("cal-open");
+    open.href = shareUrl;
+    open.hidden = false;
+
+    // Some embedding contexts block third-party frames. If nothing has
+    // loaded after a beat, fall back to the link rather than a blank box.
+    var loaded = false;
+    frame.addEventListener("load", function () { loaded = true; });
+    setTimeout(function () {
+      if (loaded) return;
+      frame.hidden = true;
+      var fb = $("cal-fallback");
+      fb.hidden = false;
+      fb.innerHTML =
+        '<div class="eyebrow eyebrow--ink">Booking opens in a new tab</div>' +
+        '<p>This page is embedded, so the calendar can\'t display inline here.</p>' +
+        '<a class="cal-open" href="' + encodeURI(shareUrl) + '" target="_blank" rel="noopener">Open booking page ↗</a>';
+    }, 2500);
+  }
+
+  /* ---------- chips ---------- */
+  function makeChip(label, pressed, onClick) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip";
+    b.textContent = label;
+    b.setAttribute("aria-pressed", pressed ? "true" : "false");
+    b.addEventListener("click", onClick);
+    return b;
+  }
+
+  function renderChips() {
+    var pc = $("personas");
+    pc.innerHTML = "";
+    PERSONAS.forEach(function (p) {
+      pc.appendChild(makeChip(p, state.persona === p, function () {
+        state.persona = state.persona === p ? null : p;
+        renderChips();
+      }));
+    });
+
+    var tc = $("types");
+    tc.innerHTML = "";
+    TYPES.forEach(function (t) {
+      tc.appendChild(makeChip(t, state.types.indexOf(t) > -1, function () {
+        var i = state.types.indexOf(t);
+        if (i > -1) state.types.splice(i, 1); else state.types.push(t);
+        renderChips();
+      }));
+    });
+  }
+  renderChips();
+
+  /* ---------- submission ---------- */
+  function collect() {
+    return {
+      persona: state.persona,
+      types: state.types.slice(),
+      submittedAt: new Date().toISOString(),
+      timezone: detectedTz,
+      page: location.href,
+      referrer: document.referrer || null
+    };
+  }
+
+  function validate(lead) {
+    if (!lead.persona && !lead.types.length) {
+      return { msg: "Tell us what you're after — pick a description or a video type." };
+    }
+    return null;
+  }
+
+  function keepLocally(lead) {
+    try {
+      var all = JSON.parse(localStorage.getItem("videoclaw.leads") || "[]");
+      all.push(lead);
+      localStorage.setItem("videoclaw.leads", JSON.stringify(all.slice(-50)));
+    } catch (e) { /* private mode — nothing to do */ }
+  }
+
+  function send(lead) {
+    if (!CONFIG.formEndpoint) return Promise.resolve(false);
+    return fetch(CONFIG.formEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(lead)
+    }).then(function (r) { return r.ok; })
+      .catch(function () { return false; });
+  }
+
+  function summarize(lead) {
+    var bits = ["20 min video call"];
+    if (lead.persona) bits.push(lead.persona);
+    if (lead.types.length) {
+      bits.push(lead.types.length === 1 ? lead.types[0] : lead.types.length + " video types");
+    }
+    return bits.join(" · ");
+  }
+
+  $("lead-form").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var err = $("form-error");
+    var btn = $("submit-btn");
+
+    var lead = collect();
+    var problem = validate(lead);
+    if (problem) {
+      err.textContent = problem.msg;
+      return;
+    }
+
+    err.textContent = "";
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+
+    keepLocally(lead);
+    send(lead).then(function () {
+      $("done-summary").textContent = summarize(lead) + " · your Google Calendar invite arrives instantly";
+      $("booking-open").hidden = true;
+      $("booking-done").hidden = false;
+      $("booking-done").scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  });
+
+  $("reset-btn").addEventListener("click", function () {
+    state.persona = null;
+    state.types = [];
+    renderChips();
+    $("form-error").textContent = "";
+    var btn = $("submit-btn");
+    btn.disabled = false;
+    btn.textContent = "Confirm session + claim $100 →";
+    $("booking-done").hidden = true;
+    $("booking-open").hidden = false;
+    $("personas").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+})();
+</script>
+
+</body>
+</html>
