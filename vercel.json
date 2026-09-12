@@ -4,5 +4,15 @@
   "outputDirectory": "public",
   "framework": null,
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/visko",
+      "destination": "https://visko-freestyle.vercel.app/visko"
+    },
+    {
+      "source": "/visko/:path*",
+      "destination": "https://visko-freestyle.vercel.app/visko/:path*"
+    }
+  ]
 }
