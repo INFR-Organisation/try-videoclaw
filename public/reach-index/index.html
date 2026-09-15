@@ -1,0 +1,441 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Thirty-nine soul, rap, reggae and jazz-adjacent artists ranked by the audience each can actually reach — Spotify monthly listeners weighted against Instagram following, every figure read off the platform that publishes it.">
+<title>Reach Index 39</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#faf6ec; --paper:#fffcf5; --paper-soft:#f8f3e7; --paper-warm:#f2e2ce;
+  --ink:#1a1815; --ink-soft:#3a332b; --muted:#8a8077; --muted-soft:#b8ae9f;
+  --line:#e4d9c2; --line-soft:#efe6d2;
+  --accent:#c03a6e; --accent-deep:#9e2b59; --accent-soft:#f4dde6;
+  --lav:#c9b8ec; --lav-deep:#6b53a6; --lav-soft:#ece6f8;
+  --bar-track:#efe6d2;
+  --sans:'DM Sans',-apple-system,system-ui,sans-serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+  --serif:'Fraunces',Georgia,serif;
+  --r:14px; --r-sm:10px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#14120f; --paper:#1c1916; --paper-soft:#211d19; --paper-warm:#2b241c;
+    --ink:#f4eee2; --ink-soft:#d9d1c2; --muted:#9b9284; --muted-soft:#6d665c;
+    --line:#2f2922; --line-soft:#262019;
+    --accent:#e8749b; --accent-deep:#f0a0bd; --accent-soft:#3a222c;
+    --lav:#b9a6e6; --lav-deep:#cbbcf0; --lav-soft:#282139;
+    --bar-track:#2a241d;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14120f; --paper:#1c1916; --paper-soft:#211d19; --paper-warm:#2b241c;
+  --ink:#f4eee2; --ink-soft:#d9d1c2; --muted:#9b9284; --muted-soft:#6d665c;
+  --line:#2f2922; --line-soft:#262019;
+  --accent:#e8749b; --accent-deep:#f0a0bd; --accent-soft:#3a222c;
+  --lav:#b9a6e6; --lav-deep:#cbbcf0; --lav-soft:#282139;
+  --bar-track:#2a241d;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;
+  -webkit-font-smoothing:antialiased;margin:0}
+.wrap{max-width:940px;margin:0 auto;padding-inline:20px;padding-block:0 72px}
+
+/* ---------- masthead ---------- */
+.mast{padding-block:56px 30px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 18px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(40px,8vw,68px);line-height:1.02;
+  letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1 em{font-style:italic;color:var(--accent)}
+.standfirst{max-width:60ch;margin:18px 0 0;font-size:16px;color:var(--ink-soft)}
+.mast-meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:24px;
+  font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.mast-meta b{color:var(--ink);font-weight:500}
+
+/* ---------- controls ---------- */
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding-block:22px;
+  border-bottom:1px solid var(--line-soft);position:sticky;top:0;background:var(--bg);z-index:5}
+.controls .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+button.sort{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--ink-soft);
+  background:transparent;border:1px solid var(--line);border-radius:100px;padding:6px 14px;cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s}
+button.sort:hover{border-color:var(--muted-soft)}
+button.sort[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fffcf5}
+button.sort:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---------- ranked rows ---------- */
+ol.board{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+li.row{border-bottom:1px solid var(--line-soft)}
+details{width:100%}
+summary{display:grid;grid-template-columns:34px 52px minmax(0,1fr) 224px;gap:18px;align-items:center;
+  padding-block:18px;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:hover .name{color:var(--accent)}
+
+.rank{font-family:var(--mono);font-size:13px;color:var(--muted);text-align:right;
+  font-variant-numeric:tabular-nums}
+.rank.unranked{color:var(--muted-soft)}
+
+.mono{position:relative;overflow:hidden;width:52px;height:52px;border-radius:50%;
+  display:grid;place-items:center;
+  font-family:var(--serif);font-weight:600;font-size:18px;letter-spacing:-.01em;
+  border:1px solid var(--line);color:var(--ink-soft);user-select:none}
+.mono img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+.who{min-width:0}
+.name{font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.2;
+  transition:color .15s}
+.genre{font-size:13px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.metric{display:grid;gap:7px;justify-items:end}
+.badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;width:100%}
+.badge{display:flex;align-items:baseline;justify-content:flex-end;gap:5px;white-space:nowrap;
+  border:1px solid var(--line);border-radius:100px;padding:4px 11px;background:var(--paper);
+  font-family:var(--mono);font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums}
+.badge b{font-weight:500}
+.badge i{font-style:normal;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.badge.empty{background:transparent;border-style:dashed;border-color:var(--line-soft);color:var(--muted-soft)}
+.badge.empty i{color:var(--muted-soft)}
+.bar{width:100%;height:4px;border-radius:3px;background:var(--bar-track);overflow:hidden}
+.bar span{display:block;height:100%;background:var(--accent);border-radius:3px}
+.bar span.partial{background:var(--lav)}
+
+/* ---------- expanded panel ---------- */
+.panel{padding:4px 0 26px 104px;display:grid;gap:16px}
+.bio{max-width:64ch;font-size:14.5px;color:var(--ink-soft);margin:0}
+.dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:14px 24px;
+  padding-top:4px;border-top:1px solid var(--line-soft)}
+.dl div{min-width:0}
+.dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:3px}
+.dd{font-family:var(--mono);font-size:14px;color:var(--ink);font-variant-numeric:tabular-nums;
+  word-break:break-word}
+.dd.small{font-family:var(--sans);font-size:13.5px;color:var(--ink-soft)}
+.dd .asof{display:block;font-size:10.5px;color:var(--muted);margin-top:2px;letter-spacing:0}
+.dd.none{color:var(--muted-soft)}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+a.chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;
+  text-decoration:none;color:var(--ink-soft);border:1px solid var(--line);border-radius:100px;
+  padding:5px 13px;transition:border-color .15s,color .15s}
+a.chip:hover{color:var(--accent);border-color:var(--accent)}
+a.chip.play{border-color:var(--accent);color:var(--accent)}
+a.chip.play:hover{background:var(--accent);color:#fffcf5}
+.srcs{font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 12px}
+.srcs a{color:var(--muted);text-underline-offset:2px}
+.srcs .nophoto{color:var(--muted-soft)}
+.srcs a:hover{color:var(--accent)}
+
+/* ---------- tier divider ---------- */
+.tier{padding-block:34px 14px}
+.tier h2{font-family:var(--serif);font-size:22px;font-weight:600;margin:0;letter-spacing:-.01em}
+.tier p{font-size:13.5px;color:var(--muted);margin:6px 0 0;max-width:62ch}
+
+/* ---------- method ---------- */
+.method{margin-top:52px;padding:26px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r)}
+.method h2{font-family:var(--serif);font-size:19px;font-weight:600;margin:0 0 12px}
+.method p{font-size:13.5px;color:var(--ink-soft);margin:0 0 10px;max-width:66ch}
+.method p:last-child{margin-bottom:0}
+.method code{font-family:var(--mono);font-size:12.5px;background:var(--paper-soft);
+  border:1px solid var(--line-soft);border-radius:5px;padding:1px 5px}
+
+@media (max-width:720px){
+  summary{grid-template-columns:26px 44px minmax(0,1fr);gap:12px;row-gap:10px;padding-block:16px}
+  .mono{width:44px;height:44px;font-size:15px}
+  .name{font-size:17px}
+  .metric{grid-column:2 / -1;justify-items:stretch}
+  .badge{justify-content:flex-start}
+  .panel{padding-left:0}
+  .controls{position:static}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <p class="eyebrow">Revised 14 September 2026 · 39 artists · 38 ranked · 38 portraits</p>
+    <h1>Reach <em>Index</em> 39</h1>
+    <p class="standfirst">A hand-drawn roster of soul, rap, reggae and jazz-adjacent artists, ordered by
+      the audience each one can actually reach — streaming pull weighted against social following.
+      Every figure below was read off the platform that publishes it, on the date shown.</p>
+    <div class="mast-meta">
+      <span>Streaming metric · <b>Spotify monthly listeners</b></span>
+      <span>Social metric · <b>Instagram followers</b></span>
+      <span>Scale · <b>log₁₀</b></span>
+    </div>
+  </header>
+
+  <div class="controls">
+    <span class="lbl">Order by</span>
+    <button class="sort" data-sort="score" aria-pressed="true">Reach score</button>
+    <button class="sort" data-sort="ml" aria-pressed="false">Streaming</button>
+    <button class="sort" data-sort="ig" aria-pressed="false">Following</button>
+    <button class="sort" data-sort="name" aria-pressed="false">A–Z</button>
+  </div>
+
+  <ol class="board" id="board"></ol>
+
+  <section class="method">
+    <h2>How this was built, and what it doesn't know</h2>
+    <p><b>Ranking.</b> Reach score is a weighted blend on a log scale — Spotify monthly listeners at 60%,
+      Instagram followers at 40%, each mapped across its own range (<code>10K–100M</code> listeners,
+      <code>1K–30M</code> followers) and rescaled to 0–100. An artist with only one of the two metrics is
+      scored on that metric alone and marked <b>partial</b> — a lavender bar instead of a rose one — because
+      a one-legged score is not the same measurement as a two-legged one.</p>
+    <p><b>Total lifetime streams.</b> Deliberately absent. Neither Spotify, Apple Music nor YouTube publishes a
+      per-artist all-time stream total, and the aggregator estimates that circulate are modelled, not measured.
+      Rather than print a number that looks authoritative and isn't, this index uses monthly listeners — a figure
+      the platform itself publishes.</p>
+    <p><b>Faces.</b> Thirty-eight of the thirty-nine rows carry a photograph, each taken from a source that names the person it depicts — a Wikipedia lead image where an article exists, otherwise the artist’s own profile picture on Deezer, Spotify or Last.fm, and for the three non-performers a portrait from their own professional page. Every row credits its portrait in the expanded panel, and each crop is centred on the detected face rather than the middle of the frame. <b>Carla</b> is the one monogram left: the name could not be resolved to a person, and a wrong face is worse than none. A missing or broken file removes itself and the monogram shows through, so the page stays correct however full that folder is.</p>
+    <p><b>Confidence.</b> Streaming figures are read directly from each artist’s Spotify page, which states the count itself, and are reproduced at the precision Spotify displays — <code>65.6M</code>, not a false-precision 65,600,000. Follower counts dated 14 Sep 2026 were read from the Instagram profile linked in that row; the rows carrying an earlier or vaguer date still hold a tracker’s last published figure, and say so. Identity was checked before either number was taken: every artist was matched to their platform pages through MusicBrainz relations or a known track title, never by name alone, which is what separates this Ogi, Avara or Carla from the several others recording under each name. An earlier pass that relied on third-party trackers left thirteen artists with no figure at all and put a six-year-old count on Tanerélle; both were artefacts of the trackers, not of the artists.</p>
+  </section>
+</div>
+
+<script>
+const A = [
+ {n:"SZA",g:"Alt-R&B · confessional neo-soul",ml:65600000,mlRaw:"65.6M",mlAs:"14 Sep 2026",ig:23100000,igRaw:"23.1M",igAs:"May 2026",
+  work:"Snooze",bio:"The commercial centre of modern alternative R&B. SZA writes in run-on confession — jealous, funny, self-lacerating — over production that drifts between bedroom guitar, trap and soft rock, and she has made that restlessness the mainstream default rather than the exception.",
+  src:[["HypeAuditor","https://hypeauditor.com/instagram/sza/"],["ChartMasters","https://chartmasters.org/artist/?id=7tYKF4w9nC0nq9CsPZTHyP"],["Spotify","https://open.spotify.com/artist/7tYKF4w9nC0nq9CsPZTHyP"],["Instagram","https://www.instagram.com/sza/"]]},
+ {n:"Ravyn Lenae",g:"Art-R&B · airy soul",ml:34300000,mlRaw:"34.3M",mlAs:"14 Sep 2026",ig:487000,igAs:"2026",
+  work:"Love Me Not",bio:"Chicago-raised and Steve Lacy-adjacent, Lenae sings in a weightless upper register that treats the voice as texture as much as melody. Years of critically adored, commercially quiet releases turned over when 'Love Me Not' broke wide, pulling her catalogue of psych-tinged soul along with it.",
+  src:[["Viberate","https://www.viberate.com/artist/ravyn-lenae/"],["Music Metrics Vault","https://www.musicmetricsvault.com/artists/ravyn-lenae/5RTLRtXjbXI2lSXc6jxlAz"],["Spotify","https://open.spotify.com/artist/5RTLRtXjbXI2lSXc6jxlAz"],["Instagram","https://www.instagram.com/ravynlenae/"]]},
+ {n:"benny blanco",g:"Pop production · writer-artist",ml:27400000,mlRaw:"27.4M",mlAs:"14 Sep 2026",ig:3000000,igAs:"2026",
+  work:"Eastside",bio:"A producer whose fingerprints sit on two decades of radio — Ke$ha, Rihanna, Bieber, Halsey — who then stepped in front of the credit as a billed artist. The style is magpie pop: whatever hook works, assembled with unusual economy.",
+  src:[["Music Metrics Vault","https://www.musicmetricsvault.com/artists/benny-blanco/5CiGnKThu5ctn9pBxv7DGa"],["Spotify","https://open.spotify.com/artist/5CiGnKThu5ctn9pBxv7DGa"],["Instagram","https://www.instagram.com/itsbennyblanco/"]]},
+ {n:"Jhené Aiko",g:"Ambient R&B · sung-through",ml:14800000,mlRaw:"14.8M",mlAs:"14 Sep 2026",ig:17000000,igRaw:"17M",igAs:"14 Sep 2026",
+  work:"Sativa",bio:"Aiko built a lane out of softness — breathy, close-miked vocals over crystalline, almost new-age production, with lyrics that stay blunt about grief and appetite. The calm is the delivery mechanism, not the message.",
+  src:[["Music Metrics Vault","https://www.musicmetricsvault.com/artists/jhene-aiko/5ZS223C6JyBfXasXxrRqOk"],["ChartMasters","https://chartmasters.org/artist/jhene-aiko/"],["Spotify","https://open.spotify.com/artist/5ZS223C6JyBfXasXxrRqOk"],["Instagram","https://www.instagram.com/jheneaiko/"]]},
+ {n:"6LACK",g:"Atlanta trap-soul",ml:12600000,mlRaw:"12.6M",mlAs:"14 Sep 2026",ig:2000000,igRaw:"2M",igAs:"14 Sep 2026",
+  work:"PRBLMS",bio:"Atlanta by way of Baltimore, 6LACK half-sings, half-mutters over cavernous, slow-moving low end. The register is exhaustion rather than menace — a trap-adjacent R&B that never raises its voice.",
+  src:[["ChartMasters","https://chartmasters.org/artist/6lack/"],["Spotify","https://open.spotify.com/artist/4IVAbR2w4JJNJDDRFP3E83"],["Instagram","https://www.instagram.com/6lack/"]]},
+ {n:"Victoria Monét",g:"Funk-forward R&B",ml:3900000,mlRaw:"3.9M",mlAs:"14 Sep 2026",ig:2000000,igRaw:"2M",igAs:"14 Sep 2026",
+  work:"On My Mama",bio:"A decade of writing hits for Ariana Grande preceded her own turn, and it shows in the construction: live-band funk, disco strings and Motown-literate arrangement, executed with a songwriter's discipline about where the hook lands.",
+  src:[["Music Metrics Vault","https://www.musicmetricsvault.com/artists/victoria-monet/63XBtGSEZINSyXylZxEUbv"],["SpeakRJ","https://www.speakrj.com/audit/report/victoriamonet/instagram"],["Spotify","https://open.spotify.com/artist/63XBtGSEZINSyXylZxEUbv"],["Instagram","https://www.instagram.com/victoriamonet/"]]},
+ {n:"SiR",g:"TDE soul · West Coast smooth",ml:3600000,mlRaw:"3.6M",mlAs:"14 Sep 2026",ig:605000,igAs:"14 Sep 2026",
+  work:"John Redcorn",bio:"Sir Darryl Farris came to Top Dawg as a working songwriter and kept that sensibility — unhurried, harmonically rich Inglewood soul that leaves space where a lesser record would add a drop.",
+  src:[["Wikipedia","https://en.wikipedia.org/wiki/Sir_(singer)"],["ChartMasters","https://chartmasters.org/spotify-most-followed-artists/"],["Spotify","https://open.spotify.com/artist/3QTDHixorJelOLxoxcjqGx"],["Instagram","https://www.instagram.com/inglewoodsir/"]]},
+ {n:"Chronixx",g:"Reggae revival · roots",ml:3200000,mlRaw:"3.2M",mlAs:"14 Sep 2026",ig:906000,igAs:"2026",
+  work:"Skankin' Sweet",bio:"The figurehead of Jamaica's reggae revival: roots instrumentation and Rastafari themes played with a contemporary, unnostalgic snap. Chronixx made conscious reggae a live global concern again rather than a heritage act.",
+  src:[["Soundcharts","https://soundcharts.com/en/artists/spotify-monthly-listeners/genre/reggae"],["Spotify","https://open.spotify.com/artist/2oZcMYiKpjaA2Et5mU3RPP"],["Instagram","https://www.instagram.com/chronixxmusic/"]]},
+ {n:"Jacob Collier",g:"Harmonic-maximalist jazz-pop",ml:1200000,mlRaw:"1.2M",mlAs:"14 Sep 2026",ig:5000000,igRaw:"5M",igAs:"14 Sep 2026",
+  work:"Little Blue",bio:"A one-man multitracked orchestra who treats microtonal modulation and hundred-voice audience choirs as pop devices. Collier's audience is disproportionately musicians, which is why his social following dwarfs his streaming — the work circulates as demonstration as much as song.",
+  src:[["HypeAuditor","https://hypeauditor.com/instagram/jacobcollier/"],["Music Metrics Vault","https://www.musicmetricsvault.com/artists/jacob-collier/0QWrMNukfcVOmgEU0FEDyD"],["Spotify","https://open.spotify.com/artist/0QWrMNukfcVOmgEU0FEDyD"],["Instagram","https://www.instagram.com/jacobcollier/"]]},
+ {n:"Samara Cyn",g:"Neo-soul rap",ml:737900,mlRaw:"737.9K",mlAs:"14 Sep 2026",ig:512000,igAs:"14 Sep 2026",
+  work:"The Drive Home",bio:"Tennessee-born, LA-based, and named to the 2025 XXL Freshman class. Cyn raps in a low conversational register over neo-soul beds — closer to a diarist than a battler, with the pocket of someone who grew up on live drums.",
+  src:[["Wikipedia","https://en.wikipedia.org/wiki/Samara_Cyn"],["Viberate","https://www.viberate.com/artist/samara-cyn/"],["Spotify","https://open.spotify.com/artist/4nqQTosM2Mbg7iRjvJU0N0"],["Instagram","https://www.instagram.com/samaracyn/"]]},
+ {n:"D Smoke",g:"Bilingual West Coast rap",ml:637100,mlRaw:"637.1K",mlAs:"14 Sep 2026",ig:2000000,igRaw:"2M",igAs:"14 Sep 2026",
+  work:"Black Habits",bio:"A former Inglewood Spanish teacher who won Netflix's Rhythm + Flow and converted it into a Grammy-nominated album. He raps in English and Spanish with a schoolteacher's diction and a church musician's ear for changes.",
+  src:[["Wikipedia","https://en.wikipedia.org/wiki/D_Smoke"],["Music Metrics Vault","https://www.musicmetricsvault.com/artists/d-smoke/23rK0hajv5ix2yPM4IIgOo"],["Spotify","https://open.spotify.com/artist/23rK0hajv5ix2yPM4IIgOo"],["Instagram","https://www.instagram.com/dsmoke7/"]]},
+ {n:"Vic Mensa",g:"Chicago rap · rock-leaning",ml:867600,mlRaw:"867.6K",mlAs:"14 Sep 2026",ig:2419851,igAs:"2026",
+  work:"U Mad",bio:"Chicago, Roc Nation, and a career that keeps refusing to settle — drill-adjacent aggression, punk guitars, Ghanaian roots work and open political agitation, sometimes on the same record.",
+  src:[["Viberate","https://www.viberate.com/artist/vic-mensa/"],["HypeAuditor","https://hypeauditor.com/instagram/vicmensa/"],["Spotify","https://open.spotify.com/artist/27w1NoOLMX7tJMYqcetPyG"],["Instagram","https://www.instagram.com/vicmensa/"]]},
+ {n:"Goapele",g:"Neo-soul · Bay Area",ml:599100,mlRaw:"599.1K",mlAs:"14 Sep 2026",ig:265000,igAs:"2026",
+  work:"Closer",bio:"An architect of the neo-soul movement rather than an inheritor of it. Her name means 'to move forward' in Setswana, and 'Closer' has outlived every trend cycle since 2001 as a standard of the form.",
+  src:[["Wikipedia","https://en.wikipedia.org/wiki/Goapele"],["Spotify","https://open.spotify.com/artist/5cgtn5YWC3Fr06wTps1dBq"],["Instagram","https://www.instagram.com/goapele/"]]},
+ {n:"Mustafa",g:"Devotional folk · Sudanese-Canadian",ml:3200000,mlRaw:"3.2M",mlAs:"14 Sep 2026",ig:588000,igAs:"2026",
+  work:"Dunya",bio:"A Toronto poet before he was a singer, Mustafa writes elegies for friends lost to violence in Regent Park and sets them to spare acoustic folk. 'Dunya' drew Rosalía, Clairo and Aaron Dessner into that hush; it was shortlisted for the Polaris Prize.",
+  src:[["Wikipedia","https://en.wikipedia.org/wiki/Mustafa_the_Poet"],["Spotify","https://open.spotify.com/artist/1zkKkDDra0jlsiJYz57P3P"],["Instagram","https://www.instagram.com/mustafathepoet/"]]},
+ {n:"Tanerélle",g:"Cosmic R&B · siren-soul",ml:450300,mlRaw:"450.3K",mlAs:"14 Sep 2026",ig:386000,igAs:"14 Sep 2026",
+  work:"Siren",bio:"Atlanta-born, LA-trained as an actor before she recorded anything. Tanerélle sings in a deliberately otherworldly, underwater register — she calls the persona a siren, and the arrangements agree.",
+  src:[["Music Metrics Vault","https://www.musicmetricsvault.com/artists/tanerelle/1r1n66Rkx4fzNCIUQhS6OH"],["TVOvermind","https://tvovermind.com/tanerelle/"],["Spotify","https://open.spotify.com/artist/1r1n66Rkx4fzNCIUQhS6OH"],["Instagram","https://www.instagram.com/tanerelle/"]]},
+ {n:"Zacari",g:"Psych-soul falsetto · TDE",ml:406900,mlRaw:"406.9K",mlAs:"14 Sep 2026",ig:79000,igAs:"2026",
+  work:"Don't Trip",bio:"The falsetto that floats over 'LOVE.' on DAMN. Signed to Top Dawg in his own right, Zacari makes warm, slightly psychedelic soul built around a voice that stays airborne.",
+  src:[["Spotify","https://open.spotify.com/artist/3qBKjEOanahMxlRojwCzhI"],["Instagram","https://www.instagram.com/zacarip/"]]},
+ {n:"Avara",g:"R&B · Carnatic-informed production",ml:378300,mlRaw:"378.3K",mlAs:"14 Sep 2026",ig:117000,igAs:"14 Sep 2026",
+  work:"better",bio:"Indian-American, Atlanta-raised, LA-based, and her own producer. Avara folds Indian classical vocal training and Western choral writing into R&B, using it to write plainly about meditation, mental health and loss.",
+  src:[["Stereofox","https://www.stereofox.com/artists/avara/"],["volt.fm","https://volt.fm/spotify/artist/63PeJBCkvzMDtyfc0krQyd"],["Spotify","https://open.spotify.com/artist/63PeJBCkvzMDtyfc0krQyd"],["Instagram","https://www.instagram.com/avaraellorie/"]]},
+ {n:"Cory Henry",g:"Gospel-jazz organ",ml:283600,mlRaw:"283.6K",mlAs:"14 Sep 2026",ig:746000,igAs:"14 Sep 2026",
+  work:"Rise",bio:"On the Hammond B3 from the age of two and in church ever since. Henry moves between Snarky Puppy virtuosity, solo gospel testimony and funk band leadership without changing his touch — the organ always sounds like a congregation.",
+  src:[["Music Metrics Vault","https://www.musicmetricsvault.com/artists/cory-henry/21SOnTj5ECwVXeBUTRcP3s"],["Wikipedia","https://en.wikipedia.org/wiki/Cory_Henry"],["Spotify","https://open.spotify.com/artist/21SOnTj5ECwVXeBUTRcP3s"],["Instagram","https://www.instagram.com/coryhenry/"]]},
+ {n:"Mereba",g:"Folk-soul · rap-singing",ml:952100,mlRaw:"952.1K",mlAs:"14 Sep 2026",ig:206000,igAs:"2026",
+  work:"Sandstorm",bio:"Spillage Village's quiet centre, Ethiopian-American and equally at home with an acoustic guitar or a verse. Mereba's records move between folk fingerpicking and hip-hop cadence without announcing the seam.",
+  src:[["Viberate","https://www.viberate.com/artist/mereba/"],["Spotify","https://open.spotify.com/artist/294lNTPZfdqyzt8qnxmFiL"],["Instagram","https://www.instagram.com/mereba/"]]},
+ {n:"Satica",g:"Electronic pop · R&B",ml:132500,mlRaw:"132.5K",mlAs:"14 Sep 2026",ig:18000,igAs:"14 Sep 2026",
+  work:"Show Up",bio:"Born April Nhem in Long Beach to Cambodian refugees, and explicit that the diaspora is the subject. The music is sleek synth-pop with R&B phrasing — Lykke Li and Frank Ocean are audible reference points.",
+  src:[["Cambodge Mag","https://www.cambodgemag.com/en/post/cambodia-music-satica-the-kaleidoscopic-voice-of-the-cambodian-diaspora-in-california"],["AllMusic","https://www.allmusic.com/artist/satica-mn0003606322/biography"],["Spotify","https://open.spotify.com/artist/1cD70wZHi8HMyLYVDSV9We"],["Instagram","https://www.instagram.com/saticamusic/"]]},
+ {n:"Xiuhtezcatl",g:"Indigenous hip-hop",ml:110500,mlRaw:"110.5K",mlAs:"14 Sep 2026",ig:468000,igAs:"2026",
+  work:"Boombox Warfare",bio:"A climate organiser with Nahua roots who raps in English, Spanish and Nahuatl. The activism and the music are not separate projects — the records are the argument, delivered over bass-heavy West Coast production.",
+  src:[["Chartmetric","https://hmc.chartmetric.com/indigenous-musicians-you-should-know/"],["Spotify","https://open.spotify.com/artist/56bZk5ODMBjqUQm1z44gBE"],["Instagram","https://www.instagram.com/xiuhtezcatl/"]]},
+ {n:"Dizzy Fae",g:"Experimental pop · club-R&B",ml:111700,mlRaw:"111.7K",mlAs:"14 Sep 2026",ig:140000,igAs:"2026",
+  work:"Booty 3000",bio:"St. Paul-raised and allergic to a fixed genre — Dizzy Fae's records swerve from ballroom tempos to smeared ambient R&B inside a single track. The performance persona is closer to a club night than a concert.",
+  src:[["Famous Birthdays","https://www.famousbirthdays.com/people/dizzy-fae.html"],["Spotify","https://open.spotify.com/artist/0jt1EsJCeoQXLNDta4JF6c"],["Instagram","https://www.instagram.com/dizzyfae/"]]},
+ {n:"Andre Power",g:"DJ · curator · Soulection",ml:null,ig:94000,igAs:"2026",
+  work:"Soulection Radio",bio:"Co-founder and creative director of Soulection, the collective that did more than any label to define the warm, swung, future-soul sound of the 2010s. He has DJ'd in over 50 countries and now runs the LINK UP! parties — influence measured in other people's careers, and here in a following rather than a listenership.",
+  src:[["Highsnobiety","https://www.highsnobiety.com/p/andre-power-champions-community-over-acclaim/"],["Instagram","https://www.instagram.com/andrepower/"]]},
+ {n:"Ant Clemons",g:"Gospel-pop R&B",ml:155800,mlRaw:"155.8K",mlAs:"14 Sep 2026",ig:80000,igAs:"2026",
+  work:"Better Days",bio:"A New Jersey songwriter who broke through on Kanye's 'All Mine' and turned it into four Grammy nominations. He writes hooks with church phrasing and pop economy — 'Better Days' with Justin Timberlake was written as a lockdown antidote and played at a presidential inauguration.",
+  src:[["Wikipedia","https://en.wikipedia.org/wiki/Ant_Clemons"],["Recording Academy","https://www.grammy.com/artists/ant-clemons/287181/"],["Spotify","https://open.spotify.com/artist/028lPW2NdWHdSPCkRkcyhd"],["Instagram","https://www.instagram.com/antclemons/"]]},
+ {n:"Marley Bleu",g:"Sultry R&B · pop",ml:27300,mlRaw:"27.3K",mlAs:"14 Sep 2026",ig:143800,igAs:"2026",
+  work:"—",bio:"LA singer-songwriter with a genuinely unusual lineage — Chuck Berry is a great-great uncle, her father a working bassist, her grandmother an opera singer. The music is swaggering, unhurried R&B; Drake and Timbaland have both co-signed it publicly.",
+  src:[["Viberate","https://www.viberate.com/artist/marley-bleu/"],["Rapid Connect","https://rapidconnect.minyvinyl.com/artists/1071-marley-bleu"],["Spotify","https://open.spotify.com/artist/7dgNHt7bKVud97fsCjuv6K"],["Instagram","https://www.instagram.com/marleybleu/"]]},
+ {n:"Bambaata Marley",g:"Reggae · genre-spanning",ml:19200,mlRaw:"19.2K",mlAs:"14 Sep 2026",ig:41000,igAs:"2026",
+  work:"Out of Orbit",bio:"Ziggy's eldest son and Bob's eldest grandson, recording since 2009 and deliberately not making heritage reggae. Recent releases move through dancehall, hip-hop, blues and Americana; he now records simply as Bambaata.",
+  src:[["Viberate","https://www.viberate.com/artist/daniel-bambaata-marley/"],["Spotify","https://open.spotify.com/artist/0apc74UlaiO9QnTBT21pjM"],["Instagram","https://www.instagram.com/bambaata/"]]},
+ {n:"QUIÑ",g:"“Fantasy soul”",ml:146700,mlRaw:"146.7K",mlAs:"14 Sep 2026",ig:135000,igAs:"14 Sep 2026",
+  work:"Sports",bio:"Coined her own genre — fantasy soul — because the question kept coming up. The LA singer builds dreamlike, lightly psychedelic R&B around a world-building instinct closer to a concept artist than a pop singer. Signed to Interscope; 'DR3AMGiRL II' is the most recent chapter.",
+  src:[["Last.fm","https://last.fm/music/QUI%C3%91/Math"],["Ball State Daily","https://www.ballstatedaily.com/byte/article/2025/02/artist-of-the-month-quin"],["Spotify","https://open.spotify.com/artist/3sHS70DMNgPxRqx2fUNrRA"],["Instagram","https://www.instagram.com/thequincat/"]]},
+ {n:"Baby Rose",g:"Contralto soul",ml:1000000,mlRaw:"1M",mlAs:"14 Sep 2026",ig:95000,igAs:"14 Sep 2026",
+  work:"YEARNALISM",bio:"A voice that stops conversations — a smoky contralto that draws immediate Nina Simone and Billie Holiday comparisons, deployed over psychedelic-leaning soul. Third album 'YEARNALISM' landed on Secretly Canadian in July 2026.",
+  src:[["AllMusic","https://www.allmusic.com/artist/baby-rose-mn0003854861"],["BET","https://www.bet.com/article/nomgd7/baby-roses-road-to-becoming-one-of-rbsouls-most-unique-vocalist"],["Spotify","https://open.spotify.com/artist/6Z4JcgqrqgysyHIPRtDIHo"],["Instagram","https://www.instagram.com/babyrosemusic/"]]},
+ {n:"Ogi",g:"R&B · Nigerian-American",ml:632700,mlRaw:"632.7K",mlAs:"14 Sep 2026",ig:108000,igAs:"14 Sep 2026",
+  work:"Bitter",bio:"Nigerian-American and first noticed for a PJ Morton cover, then for 'I Got It' with No I.D. behind the board. The 2022 EP Monologues put her on tour with Snoh Aalegra, Mahalia and Paramore, and 'Bitter' remains the entry point.",
+  src:[["Wikipedia","https://en.wikipedia.org/wiki/Ogi_(singer)"],["Spotify","https://open.spotify.com/artist/60nDKjd690Luygtd3Fm0Cu"],["Instagram","https://www.instagram.com/arealogi/"]]},
+ {n:"AMAKA",g:"Afro-electronic · dance",ml:41800,mlRaw:"41.8K",mlAs:"14 Sep 2026",ig:97000,igAs:"14 Sep 2026",
+  work:"Oasis",bio:"Raised in Lagos, with a debut project produced end-to-end by KAYTRANADA. The sound is sensual and unpredictable — a wide vocal range placed over Afro-tinged electronic dance production rather than sitting on top of it.",
+  src:[["Music Metrics Vault","https://www.musicmetricsvault.com/artists/amaka/37BQKlogkKqPt9nioMBLOa"],["Spotify","https://open.spotify.com/artist/37BQKlogkKqPt9nioMBLOa"],["Instagram","https://www.instagram.com/amakapls/"]]},
+ {n:"Maejor",g:"Pop-R&B production · artist",ml:4200000,mlRaw:"4.2M",mlAs:"14 Sep 2026",ig:1000000,igRaw:"1M",igAs:"14 Sep 2026",
+  work:"Lolly",bio:"Brandon Green has produced for Justin Bieber, Trey Songz and Ariana Grande, released his own charting singles as Maejor Ali, and more recently built a second practice around frequency-based sound and wellness recordings.",
+  src:[["Wikipedia","https://en.wikipedia.org/wiki/Maejor"],["Spotify","https://open.spotify.com/artist/3XcCT5MPlQPWFTJyzXbfuX"],["Instagram","https://www.instagram.com/maejor/"]]},
+ {n:"Kaylan Arnold",g:"Reggae-fusion R&B",ml:422500,mlRaw:"422.5K",mlAs:"14 Sep 2026",ig:75000,igAs:"14 Sep 2026",
+  work:"Hydrate",bio:"Haitian-Belizean American, raised in West Palm Beach, now LA-based — and a genuine multi-instrumentalist: piano first, then guitar, drums, flute and ukulele. The records fuse reggae with R&B and she produces them herself.",
+  src:[["Miami New Times","https://www.miaminewtimes.com/uncategorized/interview-with-kaylan-arnold-miami-randb-and-reggae-singer-songwriter-11623015/"],["Viberate","https://www.viberate.com/artist/kaylan-arnold/"],["Spotify","https://open.spotify.com/artist/30Umdbc6mDkhyrfyPw2quC"],["Instagram","https://www.instagram.com/kaylan.arnold/"]]},
+ {n:"Gayathri Krishnan",g:"Carnatic-inflected R&B · indie pop",ml:59200,mlRaw:"59.2K",mlAs:"14 Sep 2026",ig:71000,igAs:"14 Sep 2026",
+  work:"444",bio:"An LA singer-songwriter who runs Carnatic vocal ornamentation through contemporary R&B production — the melisma is structural, not decorative. She names Joni Mitchell, Alanis Morissette and Björk as the writers who started her at seventeen.",
+  src:[["COLORS","https://colorsxstudios.com/artists/gayathri-krishnan"],["The National","https://www.thenationalnews.com/arts-culture/music/indian-musician-gayathri-krishnan-is-well-on-her-way-to-success-1.452666"],["Spotify","https://open.spotify.com/artist/2taq1DRlIQkpVGINnWdVht"],["Instagram","https://www.instagram.com/gayathriikrishnan/"]]},
+ {n:"Davion Farris",g:"Gospel-rooted R&B · songwriter",ml:86400,mlRaw:"86.4K",mlAs:"14 Sep 2026",ig:83000,igAs:"14 Sep 2026",
+  work:"With Pleasure",bio:"Inglewood-raised, with a vocal approach out of gospel and unguarded, self-analytical lyrics. As a writer he has half of Tyrese's Black Rose, three cuts on Mary J. Blige's Strength of a Woman, and a Grammy-winning Lucky Daye co-write. SiR is his brother; 'Alchemy' is his most recent record.",
+  src:[["AllMusic","https://www.allmusic.com/artist/davion-farris-mn0000231276"],["Viberate","https://www.viberate.com/artist/davion-farris/"],["Spotify","https://open.spotify.com/artist/1fs8ZTl4T9HJ6ZHuDyU5bI"],["Instagram","https://www.instagram.com/iamdavionf/"]]},
+ {n:"Chloe George",g:"Songwriting · topline",ml:119000,mlRaw:"119K",mlAs:"14 Sep 2026",ig:12000,igAs:"14 Sep 2026",
+  work:"—",bio:"Credited as a songwriter on releases spanning BLACKPINK, keshi and Gryffin — but her own 'ghost town (voice memo)', a phone-recorded cover that escaped onto TikTok, is what carries her listener count. 'Seeds Vol. 1' is the most recent release under her own name.",
+  src:[["Spotify for Artists","https://artists.spotify.com/songwriter/1uKW8qrkvUTvM3mknpa5M2"],["Spotify","https://open.spotify.com/artist/5VZn4mB8pS40aE0kujdX2Y"],["Instagram","https://www.instagram.com/chloegeorgeya/"]]},
+ {n:"Zion Marley",g:"Reggae · guitar and bass",ml:33500,mlRaw:"33.5K",mlAs:"14 Sep 2026",ig:129000,igAs:"14 Sep 2026",
+  work:"Jah People",bio:"Lauryn Hill and Rohan Marley's eldest son — the Zion of 'To Zion'. He plays guitar and bass, sang in the reggae band Jah People, and has performed with his mother, who announced his debut single 'Best Of Me' herself in 2024; 'Caught Up' followed. The catalogue is young and the audience is still mostly hers, which is what the gap between his following and his streaming says.",
+  src:[["Legit.ng","https://www.legit.ng/ask-legit/biographies/1538947-zion-david-marley-meet-son-lauryn-hill-rohan-marley/"],["Spotify","https://open.spotify.com/artist/3NfvGqN0IZIAKcpuxVhOsx"],["Instagram","https://www.instagram.com/zionmarleyofficial/"]]},
+ {n:"Elmo Lovano",g:"Drums · music direction",ml:null,ig:53000,igAs:"14 Sep 2026",
+  work:"Jamm Jam",bio:"Touring from fifteen, with Skrillex, Miley Cyrus, Snoh Aalegra and Kilo Kish on the résumé, then founder of Jammcard — the professional network Forbes called a LinkedIn for musicians. His Jamm Jam series has hosted Anderson .Paak, Ice Cube and Jacob Collier. Measured here on following alone; the audience for a session drummer is other musicians.",
+  src:[["Jammcard","https://jammcard.com/elmolovano"],["Berklee","https://www.berklee.edu/people/elmo-lovano"],["Instagram","https://www.instagram.com/elmolovano/"]]},
+ {n:"Jamil Davis",g:"Management · A&R",ml:null,ig:78000,igAs:"14 Sep 2026",
+  work:"The Revels Group",bio:"Co-founder and co-CEO of The Revels Group, the LA management and production company behind producers and writers on Kanye West's Donda and Drake's Certified Lover Boy. He began as an assistant tour manager for Lil Wayne. An executive rather than a recording artist, so his reach is a following, not a listenership.",
+  src:[["Billboard","https://www.billboard.com/music/rb-hip-hop/revels-group-jamil-davis-matt-geffen-expansion-9631107/"],["LAAMP","https://www.laampmusic.com/mentors/jamil-davis"],["Instagram","https://www.instagram.com/jamiliooo/"]]},
+ {n:"Carla",g:"Unresolved identity",ml:null,ig:null,
+  work:"—",bio:"Still unresolved. A second, broader search — streaming platforms, MusicBrainz, the credits around everyone else on this roster — turned up several plausible Carlas and no way to choose between them: an LA producer and songwriter, the West Coast R&B singer Carla Blackwell, and the Austin-born LA producer Carla Olson. Left unidentified rather than guessed at; a surname or a track title would settle it in a minute.",
+  src:[]}
+];
+
+const PHOTO = {
+ "6lack":["Deezer","https://www.deezer.com/artist/10375188"],
+ "amaka":["Last.fm","https://www.last.fm/music/AMAKA"],
+ "andre-power":["Highsnobiety","https://www.highsnobiety.com/p/andre-power-champions-community-over-acclaim/"],
+ "ant-clemons":["Deezer","https://www.deezer.com/artist/15013257"],
+ "avara":["Spotify","https://open.spotify.com/artist/63PeJBCkvzMDtyfc0krQyd"],
+ "baby-rose":["Deezer","https://www.deezer.com/artist/4165077"],
+ "bambaata-marley":["Last.fm","https://www.last.fm/music/Daniel+Bambaata+Marley"],
+ "benny-blanco":["Wikipedia","https://en.wikipedia.org/wiki/Benny_Blanco"],
+ "chloe-george":["Last.fm","https://www.last.fm/music/Chloe+George"],
+ "chronixx":["Wikipedia","https://en.wikipedia.org/wiki/Chronixx"],
+ "cory-henry":["Deezer","https://www.deezer.com/artist/2795241"],
+ "d-smoke":["Deezer","https://www.deezer.com/artist/8437634"],
+ "davion-farris":["Deezer","https://www.deezer.com/artist/256755"],
+ "dizzy-fae":["Deezer","https://www.deezer.com/artist/13479145"],
+ "elmo-lovano":["Jammcard","https://jammcard.com/elmolovano"],
+ "gayathri-krishnan":["Deezer","https://www.deezer.com/artist/14895135"],
+ "goapele":["Wikipedia","https://en.wikipedia.org/wiki/Goapele"],
+ "jacob-collier":["Wikipedia","https://en.wikipedia.org/wiki/Jacob_Collier"],
+ "jamil-davis":["LAAMP","https://www.laampmusic.com/mentors/jamil-davis"],
+ "jhene-aiko":["Wikipedia","https://en.wikipedia.org/wiki/Jhen%C3%A9_Aiko"],
+ "kaylan-arnold":["Last.fm","https://www.last.fm/music/Kaylan+Arnold"],
+ "maejor":["Wikipedia","https://en.wikipedia.org/wiki/Maejor"],
+ "marley-bleu":["Deezer","https://www.deezer.com/artist/91097132"],
+ "mereba":["Deezer","https://www.deezer.com/artist/12090498"],
+ "mustafa":["Deezer","https://www.deezer.com/artist/54655422"],
+ "ogi":["Last.fm","https://www.last.fm/music/Ogi"],
+ "quin":["Wikipedia","https://en.wikipedia.org/wiki/Qui%C3%B1"],
+ "ravyn-lenae":["Wikipedia","https://en.wikipedia.org/wiki/Ravyn_Lenae"],
+ "samara-cyn":["Last.fm","https://www.last.fm/music/Samara+Cyn"],
+ "satica":["Deezer","https://www.deezer.com/artist/9763870"],
+ "sir":["Deezer","https://www.deezer.com/artist/153148"],
+ "sza":["Wikipedia","https://en.wikipedia.org/wiki/SZA"],
+ "tanerelle":["Deezer","https://www.deezer.com/artist/9680566"],
+ "vic-mensa":["Wikipedia","https://en.wikipedia.org/wiki/Vic_Mensa"],
+ "victoria-monet":["Wikipedia","https://en.wikipedia.org/wiki/Victoria_Mon%C3%A9t"],
+ "xiuhtezcatl":["Wikipedia","https://en.wikipedia.org/wiki/Xiuhtezcatl_Martinez"],
+ "zacari":["Deezer","https://www.deezer.com/artist/8669346"],
+ "zion-marley":["Deezer","https://www.deezer.com/artist/271977202"]
+};
+
+const ML_LO=4, ML_HI=8, IG_LO=3, IG_HI=7.477;
+const clamp=(x)=>Math.max(0,Math.min(1,x));
+for(const a of A){
+  const m = a.ml ? clamp((Math.log10(a.ml)-ML_LO)/(ML_HI-ML_LO)) : null;
+  const i = a.ig ? clamp((Math.log10(a.ig)-IG_LO)/(IG_HI-IG_LO)) : null;
+  if(m!==null&&i!==null){ a.score=(m*0.6+i*0.4)*100; a.partial=false; }
+  else if(m!==null){ a.score=m*100; a.partial=true; }
+  else if(i!==null){ a.score=i*100; a.partial=true; }
+  else { a.score=null; a.partial=true; }
+}
+
+const fmt=(v)=>{
+  if(!v) return null;
+  if(v>=1e6) return (v/1e6).toFixed(v>=1e7?1:2).replace(/\.0+$/,'')+"M";
+  if(v>=1e3) return (v/1e3).toFixed(v>=1e5?0:1).replace(/\.0$/,'')+"K";
+  return String(v);
+};
+const TINTS=["var(--paper-warm)","var(--lav-soft)","var(--accent-soft)","var(--paper-soft)"];
+const initials=(n)=>n.replace(/[^A-Za-zÀ-ɏ ]/g,"").trim().split(/\s+/).slice(0,2).map(w=>w[0]).join("").toUpperCase()||"—";
+const yt=(a)=>"https://www.youtube.com/results?search_query="+encodeURIComponent(a.work&&a.work!=="—"?a.n+" "+a.work+" official video":a.n+" official music video");
+const slug=(n)=>n.normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+  .toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const esc=(s)=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+let mode="score";
+const board=document.getElementById("board");
+
+function render(){
+  const ranked=A.filter(a=>a.score!==null), rest=A.filter(a=>a.score===null);
+  const cmp={score:(x,y)=>y.score-x.score, ml:(x,y)=>(y.ml||0)-(x.ml||0),
+             ig:(x,y)=>(y.ig||0)-(x.ig||0), name:(x,y)=>x.n.localeCompare(y.n)}[mode];
+  ranked.sort(cmp); rest.sort((x,y)=>x.n.localeCompare(y.n));
+  let html="", pos=0;
+  for(const a of ranked){ html+=row(a,++pos); }
+  html+=`<li class="tier"><h2>Unresolved</h2><p>One name on the roster could not be pinned to a\n    person, so there is nothing to measure. Everyone else now carries at least one figure.</p></li>`;
+  for(const a of rest){ html+=row(a,null); }
+  board.innerHTML=html;
+  board.querySelectorAll(".mono img").forEach(img=>{
+    img.addEventListener("error",()=>img.remove(),{once:true});
+    if(img.complete && img.naturalWidth===0) img.remove();
+  });
+}
+
+function row(a,pos){
+  const tint=TINTS[a.n.length%TINTS.length];
+  const w=a.score===null?0:Math.max(2,a.score);
+  const badge=(v,label)=>v?`<span class="badge"><b>${fmt(v)}</b><i>${label}</i></span>`
+    :`<span class="badge empty" title="no ${label} figure found">—<i>${label}</i></span>`;
+  const scoreCell=a.score===null?"":`<div class="dt">Reach score</div><div class="dd">${a.score.toFixed(1)}<span class="asof">${a.partial?"partial — one metric only":"both metrics"}</span></div>`;
+  const ph=PHOTO[slug(a.n)];
+  const phTxt=ph?`<span>Portrait: <a href="${ph[1]}" target="_blank" rel="noopener">${esc(ph[0])}</a></span>`:`<span class="nophoto">Portrait: none located</span>`;
+  const srcs=`<div class="srcs">${a.src.length?`<span>Sources:</span>`+a.src.map(s=>`<a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join(""):`<span>No source located.</span>`}${phTxt}</div>`;
+  return `<li class="row"><details>
+    <summary>
+      <div class="rank${pos?"":" unranked"}">${pos?String(pos).padStart(2,"0"):"—"}</div>
+      <div class="mono" style="background:${tint}" aria-hidden="true"><span>${initials(a.n)}</span><img src="/reach-index/img/${slug(a.n)}.jpg" alt="" loading="lazy" decoding="async"></div>
+      <div class="who"><div class="name">${esc(a.n)}</div><div class="genre">${esc(a.g)}</div></div>
+      <div class="metric">
+        <div class="badges">${badge(a.ml,"listeners")}${badge(a.ig,"followers")}</div>
+        <div class="bar"><span class="${a.partial?"partial":""}" style="width:${w}%"></span></div>
+      </div>
+    </summary>
+    <div class="panel">
+      <p class="bio">${esc(a.bio)}</p>
+      <div class="dl">
+        <div><div class="dt">Monthly listeners</div><div class="dd${a.ml?"":" none"}">${a.ml?(a.mlRaw||a.ml.toLocaleString("en-US")):"Not found"}${a.ml?`<span class="asof">as of ${esc(a.mlAs)}${a.mlNote?" · "+esc(a.mlNote):""}</span>`:""}</div></div>
+        <div><div class="dt">Instagram followers</div><div class="dd${a.ig?"":" none"}">${a.ig?(a.igRaw||a.ig.toLocaleString("en-US")):"Not found"}${a.ig?`<span class="asof">as of ${esc(a.igAs)}${a.igNote?" · "+esc(a.igNote):""}</span>`:""}</div></div>
+        <div><div class="dt">Genre &amp; style</div><div class="dd small">${esc(a.g)}</div></div>
+        ${scoreCell?`<div>${scoreCell}</div>`:""}
+      </div>
+      <div class="links">
+        <a class="chip play" href="${yt(a)}" target="_blank" rel="noopener">▶ Music video${a.work&&a.work!=="—"?" · "+esc(a.work):"s"}</a>
+        <a class="chip" href="https://open.spotify.com/search/${encodeURIComponent(a.n)}" target="_blank" rel="noopener">Spotify</a>
+      </div>
+      ${srcs}
+    </div></details></li>`;
+}
+
+document.querySelectorAll("button.sort").forEach(b=>{
+  b.addEventListener("click",()=>{
+    mode=b.dataset.sort;
+    document.querySelectorAll("button.sort").forEach(o=>o.setAttribute("aria-pressed",String(o===b)));
+    render();
+  });
+});
+render();
+</script>
