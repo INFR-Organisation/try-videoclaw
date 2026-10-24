@@ -1,6 +1,7 @@
 # try-videoclaw
 
-Sandbox for videoclaw experiments — live at **https://try.videoclaw.com**
+Sandbox for videoclaw experiments, at **https://try.videoclaw.com** — behind Vercel SSO, so you
+need to be signed in to the Humeo team to open it. It is not publicly reachable.
 
 > [!WARNING]
 > **This is a scratch space, not production.** Things here break, get overwritten, and
@@ -47,6 +48,11 @@ npm run build    # regenerates the index only
 
 Vercel project `try-videoclaw` under the **Humeo** team, connected to this repo — push to `main`
 and it ships. Build command `node scripts/build.js`, output directory `public`.
+
+`try.videoclaw.com` serves through a bare deployment alias, not an attached project domain. The
+project's SSO setting (`all_except_custom_domains`) exempts custom domains, but an alias is not
+one, so the URL stays behind the team sign-in — which is what you want for a scratch space.
+Attaching it as a project domain would make it public, so don't, unless that is the intent.
 
 ## Housekeeping
 
